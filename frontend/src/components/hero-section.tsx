@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { AWS_COGNITO_HOSTED_UI_URL } from "@/app/constants";
 
 const HIREE_FEATURES = [
   "Find the best jobs for you",
@@ -169,14 +170,7 @@ function HeroSection({ onNavigate }: { onNavigate?: () => void }) {
         }}
         className="font-sub text-lg px-8 py-4 rounded-full relative overflow-hidden text-white cursor-pointer transition-all duration-300 bg-white/10 backdrop-blur-sm border border-white/20 hover:border-white/40 group hover:shadow-none active:border-white/10"
         onClick={() => {
-          if (onNavigate) {
-            onNavigate();
-            setTimeout(() => {
-              router.push("/dashboard");
-            }, 800);
-          } else {
-            router.push("/dashboard");
-          }
+          router.push(process.env.NEXT_PUBLIC_AWS_COGNITO_HOSTED_UI_URL);
         }}
       >
         <span className="relative font-bold z-10">Get Started</span>
